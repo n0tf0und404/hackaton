@@ -23,6 +23,9 @@ userRouter.post("/login", loginUserSchema, ctrlLoginUser);
 // Ruta para obtener todos los usuarios (requiere autenticación)
 userRouter.get("/", authenticateUser, ctrlGetAllUsers);
 
+// Ruta para obtener un usuario utilizando el token de autenticación
+userRouter.get("/userByToken", authenticateUser, ctrlGetUserByToken);
+
 // Ruta para obtener un usuario por ID (requiere autenticación)
 userRouter.get("/:id", authenticateUser, ctrlGetUser);
 
@@ -35,7 +38,5 @@ userRouter.put("/:id", authenticateUser, ctrlUpdateUser);
 // Ruta para eliminar un usuario por ID (requiere autenticación)
 userRouter.delete("/:id", authenticateUser, ctrlDeleteUser);
 
-// Ruta para obtener un usuario utilizando el token de autenticación
-userRouter.get("/userByToken", authenticateUser, ctrlGetUserByToken);
 
 export default userRouter;
