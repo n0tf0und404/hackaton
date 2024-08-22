@@ -1,24 +1,27 @@
-import express from 'express';
-import cors from 'cors';
-import 'dotenv/config';
-import { router } from './src/routes/routes.js';
-import { errorHandler } from './src/middlewares/errorHandler.js';
-import { connectDB } from './src/config/db.js';
+import app from "./app.js";
+import {environments as env} from "./src/config/environments.js";
+import sequelize from "./src/config/db.js"; // Importar como default
 
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log("Database connected...");
 
-const app = express();
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+    sequelize
+      .sync({ alter: true })
+      .then(() => {
+        console.log("Database synced...");
 
-const PORT = process.env.PORT || 3000;
-
-// Middleware para manejar rutas
-app.use('/', router);
-app.use(errorHandler);
-
-
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}.`);
-    connectDB();
-});
+        app.listen(env.PORT || 3000, () => {
+          console.log(`Server running on port ${env.PORT || 3000}`);
+        });
+      })
+      .catch((err) => {
+        console.error("Failed to sync database:", err);
+        process.exit(1);
+      });
+  })
+  .catch((err) => {
+    console.error("Failed to connect to the database:", err);
+    process.exit(1);
+  });
