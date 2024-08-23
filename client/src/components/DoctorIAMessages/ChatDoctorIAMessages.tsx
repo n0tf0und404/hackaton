@@ -1,8 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import io from 'socket.io-client'
 import styles from './ChatDoctorIAMessages.module.css'
-
-let socket: any = null
 
 const ChatDoctorIA = () => {
 
@@ -15,6 +12,8 @@ const ChatDoctorIA = () => {
 
     const [newMessage, setNewMessage] = useState("")
 
+    const [ws, setWs] = useState<any>(null);
+
     const messageEndRef = useRef<HTMLDivElement>(null)
 
     const scrollToBottom = () => {
@@ -24,24 +23,46 @@ const ChatDoctorIA = () => {
     }
 
     useEffect(() => {
-        socket = io('http://localhost:3000')
+        const socket = new WebSocket('ws://localhost:8000/ws/chat');
+
+        socket.onopen = () => {
+            console.log("WebSocket connection established");
+        };
+
+        socket.onmessage = (event) => {
+            const token = event.data;
+
+            setMessages((prev) => {
+                const updatedMessages = [...prev];
+                const lastMessage = updatedMessages[updatedMessages.length - 1];
+                
+                if (lastMessage.sender === 1) {
+                    updatedMessages[updatedMessages.length - 1] = {
+                        ...lastMessage,
+                        content: token,
+                    };
+                } else {
+                    updatedMessages.push({ content: token, sender: 1 });
+                }
+
+                return updatedMessages;
+            });
+        };
+
+        socket.onclose = () => {
+            console.log("WebSocket connection closed");
+        };
+
+        setWs(socket);
+
+        return () => {
+            socket.close();
+        };
     }, [])
 
     useEffect(() => {
         scrollToBottom()
     }, [messages])
-
-    useEffect(() => {
-        socket.on('message ia', (data: any) => {
-            console.log(data);
-            
-            setMessages((prev) => [...prev, { sender: 2, content: data.message }])
-        })
-
-        return () => {
-            socket.off('message ia')
-        }
-    }, [])
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setNewMessage(e.target.value)
@@ -50,15 +71,12 @@ const ChatDoctorIA = () => {
     const handleSendMessage = (e: React.KeyboardEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        if (newMessage.length > 0) {
-            sendMessage()
-            setNewMessage("")
+        if (ws && newMessage.trim() !== "") {
+            setMessages([...messages, { content: newMessage, sender: 2 }]);
+            ws.send(newMessage);
+            setNewMessage("");
         }
     }
-
-    const sendMessage = () => {    
-        socket.emit('message ia', newMessage);
-    };
 
     return (
         <div className={styles['messages-container']}>
