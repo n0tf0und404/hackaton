@@ -4,6 +4,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 
 import exampleRouter from "./routes/example.router.js";
+import userRouter from "./routes/user.router.js";
 
 
 const app = Express();
@@ -15,6 +16,7 @@ app.use(Express.json());
 
 
 app.use("/example", exampleRouter);
+app.use("user", userRouter);
 
 
 export default app
