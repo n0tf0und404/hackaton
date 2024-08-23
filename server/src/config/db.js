@@ -12,4 +12,4 @@ const sequelize = new Sequelize(
   }
 );
 
-export default sequelize; // Cambiar a export default
+export default sequelize;

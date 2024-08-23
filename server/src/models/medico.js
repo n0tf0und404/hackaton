@@ -1,9 +1,9 @@
 import sequelize from "../config/db.js";
 import { DataTypes } from "sequelize";
-import { MedicoModel } from "./medico.js";
+// import { UserModel } from "./user.js";
 
-export const UserModel = sequelize.define(
-  "User",
+export const MedicoModel = sequelize.define(
+  "Medico",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -15,19 +15,15 @@ export const UserModel = sequelize.define(
       allowNull: false,
       unique: true,
     },
-    email: {
+    matricula: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
     },
-    medicoId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: MedicoModel, // Referencia al modelo de usuario
-        key: "id",
-      },
+    email: {
+      type: DataTypes.STRING,
       allowNull: false,
-      onDelete: "CASCADE",
+      unique: true,
     },
     password: {
       type: DataTypes.STRING,
@@ -37,6 +33,6 @@ export const UserModel = sequelize.define(
   {
     timestamps: true,
     deletedAt: "deletedAt",
-    tableName: "User",
+    tableName: "Medico",
   }
 );
