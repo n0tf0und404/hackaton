@@ -9,40 +9,8 @@ const ChatMessages = () => {
     const [messages, setMessages] = useState([
         {
             sender: 1,
-            content: "Hola Mundo!"
-        },
-        {
-            sender: 2,
-            content: "Hola Mundo!"
-        },
-        {
-            sender: 1,
-            content: "Hola Mundo!"
-        },
-        {
-            sender: 2,
-            content: "Hola Mundo!"
-        },
-        {
-            sender: 1,
-            content: "Hola Mundo!"
-        },
-        {
-            sender: 2,
-            content: "Hola Mundo!"
-        },
-        {
-            sender: 1,
-            content: "Hola Mundo!"
-        },
-        {
-            sender: 2,
-            content: "Hola Mundo!"
-        },
-        {
-            sender: 1,
-            content: "Hola Mundo!"
-        },
+            content: "hola mundo"
+        }
     ])
 
     const [newMessage, setNewMessage] = useState("")
@@ -56,7 +24,7 @@ const ChatMessages = () => {
     }
 
     useEffect(() => {
-        socket = io('http://localhost:3001')
+        socket = io('http://localhost:3000')
     }, [])
 
     useEffect(() => {
@@ -64,12 +32,17 @@ const ChatMessages = () => {
     }, [messages])
 
     useEffect(() => {
-        socket.emit('set name', prompt('Como te llamas?'))
+        socket.emit('set name', localStorage.getItem('username'))
 
         socket.on('message', (data: any) => {
             console.log(data);
             
-            setMessages((prev) => [...prev, { sender: 2, content: data.message }])
+            const newMessageInfo = {
+                sender: data.user === localStorage.getItem('username') ? 2 : 1,
+                content: data.message
+            }
+
+            setMessages((prev) => [...prev, newMessageInfo])
         })
 
         return () => {
@@ -85,10 +58,6 @@ const ChatMessages = () => {
         e.preventDefault()
 
         if (newMessage.length > 0) {
-            // setMessages([...messages, {
-            //     sender: 2,
-            //     content: newMessage
-            // }])
             sendMessage()
             setNewMessage("")
         }
