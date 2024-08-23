@@ -33,6 +33,6 @@ export const MedicoModel = sequelize.define(
   {
     timestamps: true,
     deletedAt: "deletedAt",
-    tableName: "User",
+    tableName: "Medico",
   }
 );
