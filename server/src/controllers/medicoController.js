@@ -5,7 +5,7 @@ import {
   deleteUser,
   loginUser,
   updateUser,
-} from "../services/medico.Services.js";
+} from "../services/medicoServices.js";
 import { createJWT } from "../utils/jsonwebtoken.js";
 
 export const ctrlGetAllUsers = async (_req, res) => {
