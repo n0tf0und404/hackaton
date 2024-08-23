@@ -9,7 +9,7 @@ const connectDB = async () => {
             .then(() => {
                 console.log("Database connected...");
                 
-                sequelize.sync({ alter: true })
+                sequelize.sync({ force: true })
                     .then(() => {
                         console.log("Database synced...");
                         resolve()
