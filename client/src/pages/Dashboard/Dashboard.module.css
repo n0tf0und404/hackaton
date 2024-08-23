@@ -47,7 +47,8 @@
 
 .report-element {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     height: 110px;
     padding-top: 20px;
     padding-left: 30px;
@@ -59,4 +60,40 @@
     cursor: pointer;
     background-color: #fff;
     box-shadow: 0 0 15px 0 #9999;
+}
+
+.report-element img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    margin-right: 20px
+}
+
+.medic-status {
+    margin-top: 30px;
+    margin-left: 40px;
+    height: 180px;
+    width: 180px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 15px 0 #9999
+}
+
+.medic-status-element {
+    display: flex;
+    width: 80%;
+    height: 80%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    outline: 1px solid #aaa9;
+    box-shadow: 0 0 15px 0 #9999
+}
+
+.medic-status-element h1 {
+    font-size: 40px
 }

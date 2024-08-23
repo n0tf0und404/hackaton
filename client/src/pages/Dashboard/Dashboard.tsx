@@ -1,6 +1,9 @@
 import { useEffect } from "react"
 import { io } from "socket.io-client"
 import LateralNav from "../../components/LateralNav/LateralNav"
+import imgReport1 from "../../assets/medic_document_1.jpg"
+import imgReport2 from "../../assets/medic_document_2.jpg"
+import imgReport3 from "../../assets/medic_document_3.jpg"
 import styles from "./Dashboard.module.css"
 
 let socket: any = null
@@ -41,15 +44,18 @@ const Dashboard = () => {
     const reports = [
         {
             title: 'Informe 1',
-            content: 'Contenido del informe 1'
+            content: 'Contenido del informe 1',
+            img: imgReport1
         },
         {
             title: 'Informe 2',
-            content: 'Contenido del informe 2'
+            content: 'Contenido del informe 2',
+            img: imgReport2
         },
         {
             title: 'Informe 3',
-            content: 'Contenido del informe 3'
+            content: 'Contenido del informe 3',
+            img: imgReport3
         },
     ]
 
@@ -62,10 +68,13 @@ const Dashboard = () => {
                         <h2>Informes</h2>
                         <div className={styles["report-container"]}>
                             {
-                                reports.map((report, index) => (
+                                reports.map((report) => (
                                     <div className={styles["report-element"]}>
-                                        <h3>{report.title}</h3>
-                                        <p>{report.content}</p>
+                                        <div>
+                                            <h3>{report.title}</h3>
+                                            <p>{report.content}</p>
+                                        </div>
+                                        <img src={report.img} alt="image" /> 
                                     </div>
                                 ))
                             }
@@ -76,6 +85,12 @@ const Dashboard = () => {
                     </div>
                     <div className={styles["element"]}>
                         <h2>Estado Medico</h2>
+                        <div className={styles["medic-status"]}>
+                            <div className={styles["medic-status-element"]}>
+                                <h1>A+</h1>
+                                <p>Estado Actual</p>
+                            </div>
+                        </div>
                     </div> 
                 </div>
             </div>
