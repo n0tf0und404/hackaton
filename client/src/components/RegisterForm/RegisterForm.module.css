@@ -53,3 +53,18 @@
     padding: 3px;
     border-radius: 3px;
 }
+
+.to-login {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px
+}
+
+.to-login-link {
+    font-weight: bold;
+}
+
+.to-login-link:hover {
+    cursor: pointer;
+}

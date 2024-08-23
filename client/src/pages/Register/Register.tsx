@@ -1,8 +1,9 @@
 import RegisterForm from "../../components/RegisterForm/RegisterForm"
+import styles from "./Register.module.css"
 
 const Register = () => {
     return (
-        <div>
+        <div className={styles.container}>
             <RegisterForm />
         </div>
     )
