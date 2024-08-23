@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import LateralNav from "../../components/LateralNav/LateralNav"
 
 const Dashboard = () => {
 
@@ -18,7 +19,9 @@ const Dashboard = () => {
     }, [])
 
     return (
-        <div>Dashboard</div>
+        <div>
+            <LateralNav></LateralNav>
+        </div>
     )
 }
 
