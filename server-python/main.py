@@ -1,6 +1,7 @@
 from fastapi import FastAPI, WebSocket
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from stream_data import websocket_endpoint
 
 app = FastAPI()
 
@@ -18,3 +19,7 @@ app.add_middleware(
 @app.get("/")
 def read_root():
     return "Hello World!"
+
+@app.websocket("/ws/chat")
+def consult_websocket(websocket: WebSocket):
+    return websocket_endpoint(websocket)
