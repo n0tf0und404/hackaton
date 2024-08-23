@@ -77,6 +77,7 @@ try {
 export const ctrlLoginUser = async (req, res) => {
 try {
     const { email, password } = req.body;
+    
     const user = await loginUser(email, password);
     if (!user) {
         return res.status(404).json({ error: 'User not found' });

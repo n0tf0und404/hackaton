@@ -1,6 +1,7 @@
 import { UserModel } from "../models/user.js";
 import { hashPassword, comparePassword } from "../utils/hash.js";
 import { findUserById } from "../utils/findUsersById.js";
+import { HistorialModel } from "../models/historial.js";
 
 export async function getAllUsers() {
   try {
@@ -58,7 +59,11 @@ export async function deleteUser(userId) {
 
 export async function updateUser(userId, updatedUserData) {
   try {
-    const existingUser = await findUserById(userId);
+    const existingUser = await findUserById(userId, {
+      include: {
+        model: HistorialModel,
+      }
+    });
 
     const updatedUser = await existingUser.update(updatedUserData);
     return updatedUser;
