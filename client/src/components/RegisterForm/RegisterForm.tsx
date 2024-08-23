@@ -129,6 +129,10 @@ const RegisterForm = () => {
                 }
             </div>
             <button type="submit" className={styles["register-button"]}>Registrarse</button>
+            <div className={styles["to-login"]}>
+                <p>¿Ya tienes una cuenta? </p>
+                <p className={styles["to-login-link"]} onClick={() => navigate("/login")}> Iniciar sesión</p>
+            </div>
         </form>
     )
 }
