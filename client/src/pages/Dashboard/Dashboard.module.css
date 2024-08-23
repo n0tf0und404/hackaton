@@ -97,3 +97,19 @@
 .medic-status-element h1 {
     font-size: 40px
 }
+
+.medic-status-info {
+    display: flex;
+    margin: 0 24px;
+    height: 70%;
+    /* outline: 1px solid black */
+}
+
+.medic-status-info-column {
+    margin-left: 24px;
+    width: 128px;
+    /* outline: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
+}
