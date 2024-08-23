@@ -4,7 +4,6 @@ import styles from './ChatsList.module.css'
 
 import avatar1 from '../../assets/avatar_1.jpg'
 import avatar2 from '../../assets/avatar_2.jpg'
-import avatar3 from '../../assets/avatar_3.jpg'
 import { ChatUserData } from '../../types/chat.types'
 
 const ChatsList = () => {
@@ -22,13 +21,6 @@ const ChatsList = () => {
             profileImage: avatar2,
             username: 'wiclok',
             message: 'nah bueno, hermano es una banda...',
-            clicked: false,
-        },
-        {
-            id: 3,
-            profileImage: avatar3,
-            username: 'MrTex09',
-            message: 'soy bien tontito',
             clicked: false,
         },
     ]) 

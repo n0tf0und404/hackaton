@@ -12,24 +12,34 @@ const LateralNav = () => {
     const pages = [
         {
             name: "Dashboard",
+            url: "/dashboard",
             icon: <ImTable2 />
         },
         {
             name: "Citas",
+            url: "#",
             icon: <ImCalendar />
         },
         {
             name: "Doctores",
+            url: "/chat",
             icon: <ImBubbles />
         },
         {
             name: "Historial",
+            url: "#",
             icon: <ImFilesEmpty />
         },
         {
             name: "Medicaciones",
+            url: "#",
             icon: <ImAlarm />
         },
+        {
+            name: "DoctorIA",
+            url: "/doctoria",
+            icon: <ImBubbles />
+        }
     ]
 
     const handlePageChange = (page: number) => {
@@ -44,7 +54,10 @@ const LateralNav = () => {
                     pages.map((page, index) => (
                         <li 
                             key={index}
-                            onClick={() => handlePageChange(index + 1)}
+                            onClick={() => {
+                                handlePageChange(index + 1)
+                                navigate(page.url)
+                            }}
                             className={currentPage === index + 1 ? styles["selected-page"] : ""}
                         >
                             {page.icon}
