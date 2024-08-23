@@ -39,7 +39,7 @@ const LateralNav = () => {
             name: "DoctorIA",
             url: "/doctoria",
             icon: <ImBubbles />
-        }
+        },
     ]
 
     const handlePageChange = (page: number) => {
