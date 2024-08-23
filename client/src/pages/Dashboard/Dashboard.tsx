@@ -30,7 +30,7 @@ const Dashboard = () => {
 
 
     useEffect(() => {
-        socket.emit('set name', 'username')
+        socket.emit('set name', localStorage.getItem('username'))
 
         return () => {
             socket.off('message')

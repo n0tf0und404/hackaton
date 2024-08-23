@@ -5,6 +5,7 @@ import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import Chat from './pages/Chat/Chat'
 import Dashboard from './pages/Dashboard/Dashboard'
+import ChatDoctorIA from './pages/DoctorIA/ChatDoctorIA'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/register' element={<Register />}/>
         <Route path='/chat' element={<Chat />}/>
         <Route path='/dashboard' element={<Dashboard />}/>
+        <Route path='/doctoria' element={<ChatDoctorIA />}/>
       </Routes>
     </BrowserRouter>
   )

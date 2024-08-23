@@ -1,0 +1,19 @@
+.container {
+    background-color: #f8f8f8;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container h1 {
+    text-align: center;
+    border-bottom: 2px solid black
+}
+
+.chats-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
