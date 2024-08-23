@@ -1,11 +1,10 @@
-import { UserModel } from "../models/user.js";
+import { MedicoModel } from "../models/medico.js";
 import { hashPassword, comparePassword } from "../utils/hash.js";
 import { findUserById } from "../utils/findUsersById.js";
-import { HistorialModel } from "../models/historial.js";
 
 export async function getAllUsers() {
   try {
-    const users = await UserModel.findAll();
+    const users = await MedicoModel.findAll();
 
     if (!users || users.length === 0) {
       throw new Error("No users found");
@@ -19,7 +18,7 @@ export async function getAllUsers() {
 
 export async function createUser(user) {
   try {
-    const existingUser = await UserModel.findOne({
+    const existingUser = await MedicoModel.findOne({
       where: { email: user.email },
     });
     if (existingUser) {
@@ -27,7 +26,7 @@ export async function createUser(user) {
     }
 
     const hashedPassword = await hashPassword(user.password);
-    const newUser = await UserModel.create({
+    const newUser = await MedicoModel.create({
       ...user,
       password: hashedPassword,
     });
@@ -59,11 +58,7 @@ export async function deleteUser(userId) {
 
 export async function updateUser(userId, updatedUserData) {
   try {
-    const existingUser = await findUserById(userId, {
-      include: {
-        model: HistorialModel,
-      }
-    });
+    const existingUser = await findUserById(userId);
 
     const updatedUser = await existingUser.update(updatedUserData);
     return updatedUser;
@@ -74,7 +69,7 @@ export async function updateUser(userId, updatedUserData) {
 
 export async function loginUser(email, password) {
   try {
-    const user = await UserModel.findOne({ where: { email } });
+    const user = await MedicoModel.findOne({ where: { email } });
     if (!user) {
       throw new Error("User not found");
     }

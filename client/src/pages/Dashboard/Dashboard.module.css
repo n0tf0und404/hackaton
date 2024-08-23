@@ -1,0 +1,115 @@
+.main-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: #f8f8f8;
+}
+
+.elements-container {
+    width: 100%
+}
+
+.elements-grid {
+    height: 90%;
+    display: grid;
+    padding: 30px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 30px
+}
+
+.element {
+    width: 100%;
+    height: 100%;
+    background-color: #d8d8d8;
+    border-radius: 28px
+}
+
+.element h2 {
+    margin-left: 18px;
+    margin-top: 15px
+}
+
+.element-report {
+    grid-row: 1 / 3;
+    background-color: #f8f8f8;
+    outline: 1px solid #d8d8d8;
+    box-shadow: 0 0 15px 0 #9999;
+}
+
+.report-container {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 85%;
+}
+
+.report-element {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 110px;
+    padding-top: 20px;
+    padding-left: 30px;
+    background-color: #f8f8f8;
+    outline: 1px solid #aaa9;
+}
+
+.report-element:hover {
+    cursor: pointer;
+    background-color: #fff;
+    box-shadow: 0 0 15px 0 #9999;
+}
+
+.report-element img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    margin-right: 20px
+}
+
+.medic-status {
+    margin-top: 30px;
+    margin-left: 40px;
+    height: 180px;
+    width: 180px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 15px 0 #9999
+}
+
+.medic-status-element {
+    display: flex;
+    width: 80%;
+    height: 80%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    outline: 1px solid #aaa9;
+    box-shadow: 0 0 15px 0 #9999
+}
+
+.medic-status-element h1 {
+    font-size: 40px
+}
+
+.medic-status-info {
+    display: flex;
+    margin: 0 24px;
+    height: 70%;
+    /* outline: 1px solid black */
+}
+
+.medic-status-info-column {
+    margin-left: 24px;
+    width: 128px;
+    /* outline: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
+}
