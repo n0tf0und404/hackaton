@@ -46,3 +46,10 @@
     cursor: pointer;
     background-color: #666;
 }
+
+.field-error {
+    color: white;
+    background-color: red;
+    padding: 3px;
+    border-radius: 3px;
+}
